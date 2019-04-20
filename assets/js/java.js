@@ -9,6 +9,11 @@ var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" + userSearch +"&api_key
 xhr.done(function(data) { 
 console.log("success got data", data); });
 
+function createInput(){
+    var $input = $('<input type="button" value="new button" />');
+    $input.append($("#btnDisplay"));
+}
+
 $("#gifSearch").on("click", function() {
     //var keyword = $(this).attr("data-keyword");
     //var userSearch = "#srchField".val().trim();
@@ -16,6 +21,7 @@ $("#gifSearch").on("click", function() {
 
     var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=HIqQtSoyCccofN3yGM5dSVHpNY0gyZU2&q=${userSearch}&limit=25&offset=0&rating=G&lang=en`
     //var userSearch = "#srchField".val().trim();
+
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -39,5 +45,6 @@ $.ajax({
 
           $("#gifs-appear-here").prepend(gifDiv);
         }
-    })
+    });
+    
 })
