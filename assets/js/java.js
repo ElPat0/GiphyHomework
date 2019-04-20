@@ -2,7 +2,7 @@
 //   HIqQtSoyCccofN3yGM5dSVHpNY0gyZU2
 
 //
-var userSearch = "";
+var userSearch = $("#srchField").val().trim();
 var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=HIqQtSoyCccofN3yGM5dSVHpNY0gyZU2";
     
 var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" + userSearch +"&api_key=HIqQtSoyCccofN3yGM5dSVHpNY0gyZU2");
@@ -11,14 +11,18 @@ console.log("success got data", data); });
 
 $("#gifSearch").on("click", function() {
     //var keyword = $(this).attr("data-keyword");
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=HIqQtSoyCccofN3yGM5dSVHpNY0gyZU2&limit=10&rating=G";
+    //var userSearch = "#srchField".val().trim();
+    var userSearch = $("#srchField").val().trim();
 
+    var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=HIqQtSoyCccofN3yGM5dSVHpNY0gyZU2&q=${userSearch}&limit=25&offset=0&rating=G&lang=en`
+    //var userSearch = "#srchField".val().trim();
 $.ajax({
     url: queryURL,
     method: "GET"
-})
-    .then(function(response) {
+}).then(function(response) {
         var results = response.data;
+        console.log("response ccheck", response)
+        
 
         for (var i = 0; i < results.length; i++) {
           var gifDiv = $("<div>");
