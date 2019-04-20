@@ -21,7 +21,7 @@ $.ajax({
     method: "GET"
 }).then(function(response) {
         var results = response.data;
-        console.log("response ccheck", response)
+        console.log("response check", response)
         
 
         for (var i = 0; i < results.length; i++) {
