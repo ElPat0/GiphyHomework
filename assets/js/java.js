@@ -11,6 +11,10 @@ console.log("success got data", data); });
 
 var gifButtons = [];
 
+for (var j = 0; j < gifButtons.length; j++){
+    createInput();
+}
+// This is supposed to add userSearch text to the gifButtons array, and then use a for loop to create a button for each string element
 
 function createInput(){
     var $input = $('<input type="button" value="srchField" />');
@@ -42,6 +46,7 @@ $.ajax({
 
           var keywordImage = $("<img>");
           keywordImage.attr("src", results[i].images.fixed_height.url);
+          keywordImage.attr("id='gif'");
 
           gifDiv.prepend(p);
           gifDiv.prepend(keywordImage);
@@ -51,8 +56,11 @@ $.ajax({
           
         };
     
-        //var userBtn = $("<button>");
-        //$("#btnDisplay").append(userBtn);
+        var userBtn = $("<button>");
+        userBtn.addClass("btn btn-info");
+        userBtn.text(userSearch)
+        $("#btnDisplay").append(userBtn);
+        $("#btnDisplay").push(gifButtons);
         //var userBtn = $("<button>");
 
     })
@@ -62,6 +70,20 @@ $.ajax({
         userBtn.text(gifButtons[i]);
         $("#btnDisplay").append(userBtn);
         
+    });
+    $(".gif").on("click", function() {
+
+        var state = $(this).attr("data-state");
+  
+        if(state === "still"){
+          $(this).attr("src", $(this).attr("data-animate"))
+          $(this).attr("data-state", "animate");
+        } else {
+          $(this).attr("src", $(this).attr("data-still"))
+          $(this).attr("data-state", "still");
+
+          //This is supposed to add click and pause functionality to the displayed gifs
+        }
     });
         //createInput};
 });
